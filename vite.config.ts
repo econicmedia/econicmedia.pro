@@ -25,8 +25,8 @@ export default defineConfig(({ mode }) => ({
     sourcemap: true,
     // Optimize CSS and reduce size
     cssCodeSplit: true,
-    // Use default CSS minimization
-    cssMinify: true,
+    // Use lightningcss for better optimization now that it's installed
+    cssMinify: 'lightningcss',
     // Configure code splitting strategy
     rollupOptions: {
       output: {

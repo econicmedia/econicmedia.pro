@@ -2,6 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+// @ts-expect-error - Custom plugin without type definitions
+import vercelOutputPlugin from "./vite-plugins/vercel-output.js";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -15,6 +17,8 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     mode === 'development' && componentTagger(),
+    // Add our custom Vercel plugin for production builds
+    mode === 'production' && vercelOutputPlugin(),
   ].filter(Boolean),
   resolve: {
     alias: {

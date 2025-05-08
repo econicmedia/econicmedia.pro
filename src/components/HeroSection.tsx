@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 import ScrollReveal from './ScrollReveal';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { motion } from 'framer-motion';
 import { Code, Camera } from 'lucide-react'; // Import contextual icons
+import { OptimizedImage } from '@/components/ui/optimized-image';
+import { preloadCriticalImages } from '@/lib/image-optimization';
 
 const HeroSection: React.FC = () => {
   const { t } = useLanguage();
+  
+  // Preload hero image to improve LCP
+  useEffect(() => {
+    preloadCriticalImages(["/lovable-uploads/70026725-9e78-48a3-8dd2-c8b817a3fba4.png"]);
+  }, []);
   
   return (
     <section id="home" className="min-h-screen flex items-center section-padding relative overflow-hidden">
@@ -95,12 +102,14 @@ const HeroSection: React.FC = () => {
               {/* Neon glow effect */}
               <div className="absolute -inset-1 rounded-2xl bg-gradient-neon opacity-30 blur-lg z-0"></div>
               
-              {/* The image */}
+              {/* The image - Optimized for LCP */}
               <AspectRatio ratio={16/12} className="relative z-10 overflow-hidden rounded-2xl">
-                <img 
+                <OptimizedImage 
                   src="/lovable-uploads/70026725-9e78-48a3-8dd2-c8b817a3fba4.png" 
                   alt="Web Design and Product Photography" 
-                  className="w-full h-full object-cover hero-image"
+                  className="hero-image" 
+                  priority={true}
+                  objectFit="cover"
                 />
               </AspectRatio>
             </div>

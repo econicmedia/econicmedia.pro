@@ -1,0 +1,41 @@
+/* Custom CSS properties for dynamic styling */
+:root {
+  --width-default: 100%;
+  --height-default: auto;
+}
+
+/* Use data attributes for dynamic sizing without inline styles */
+[data-width] {
+  width: attr(data-width);
+}
+
+[data-height] {
+  height: attr(data-height);
+}
+
+/* Fallbacks when attributes aren't set */
+.optimized-image-container:not([data-width]) {
+  width: var(--width-default);
+}
+
+.optimized-image-container:not([data-height]) {
+  height: var(--height-default);
+}
+
+/* Additional performance optimizations */
+/* Avoid layout shifts with aspect ratio containers */
+.aspect-ratio-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Prevent FOIT (Flash of Invisible Text) */
+html {
+  font-display: swap;
+}
+
+/* Disable animations until page is loaded */
+.no-animations * {
+  animation-play-state: paused !important;
+  transition: none !important;
+}

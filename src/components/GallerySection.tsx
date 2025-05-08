@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ScrollReveal from './ScrollReveal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Camera, Aperture, ChevronDown, ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { OptimizedImage } from '@/components/ui/optimized-image';
+import { useIntersectionObserver } from '@/lib/image-optimization';
 
 // Image data - images are in public/Product Pictures/
 const productImages = [
@@ -239,11 +241,12 @@ const GallerySection: React.FC = () => {
                     boxShadow: "0 8px 32px rgba(0, 230, 255, 0.15)" 
                   }}
                 >
-                  <img 
+                  <OptimizedImage 
                     src={item.src} 
                     alt={item.alt} 
-                    className="w-full h-full object-cover"
-                    loading="lazy"
+                    className="w-full h-full"
+                    objectFit="cover"
+                    priority={index < 4} // Prioritize first 4 visible images (above the fold)
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.div>

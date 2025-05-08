@@ -89,35 +89,43 @@ const cacheFirstStrategy = async (request) => {
 
 // Fetch event - intercept requests and apply caching strategies
 self.addEventListener('fetch', (event) => {
+  // Skip cross-origin requests to avoid CORS issues with Vercel
   const url = new URL(event.request.url);
-  
-  // Don't cache API calls or external resources
-  if (url.pathname.includes('/api/') || !url.origin.includes(self.location.origin)) {
+  if (url.origin !== self.location.origin) {
     return;
   }
   
-  // Apply image strategy for image files
-  if (event.request.destination === 'image' || url.pathname.match(/\.(png|jpg|jpeg|gif|webp|svg|ico)$/i)) {
-    event.respondWith(imageStrategy(event.request));
+  // Don't cache API calls
+  if (url.pathname.startsWith('/api/')) {
     return;
   }
   
-  // Apply cache-first strategy for static assets
-  if (event.request.destination === 'style' || 
-      event.request.destination === 'script' || 
-      event.request.destination === 'font' ||
-      url.pathname.match(/\.(css|js|woff2?)$/i)) {
-    event.respondWith(cacheFirstStrategy(event.request));
-    return;
-  }
-  
-  // Network-first for HTML documents
-  if (event.request.mode === 'navigate' || event.request.destination === 'document') {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match(event.request);
-      })
-    );
-    return;
+  try {
+    // Apply image strategy for image files
+    if (event.request.destination === 'image' || url.pathname.match(/\.(png|jpg|jpeg|gif|webp|svg|ico)$/i)) {
+      event.respondWith(imageStrategy(event.request));
+      return;
+    }
+    
+    // Apply cache-first strategy for static assets
+    if (event.request.destination === 'style' || 
+        event.request.destination === 'script' || 
+        event.request.destination === 'font' ||
+        url.pathname.match(/\.(css|js|woff2?)$/i)) {
+      event.respondWith(cacheFirstStrategy(event.request));
+      return;
+    }
+    
+    // Network-first for HTML documents
+    if (event.request.mode === 'navigate' || event.request.destination === 'document') {
+      event.respondWith(
+        fetch(event.request).catch(() => {
+          return caches.match(event.request);
+        })
+      );
+      return;
+    }
+  } catch (error) {
+    console.error('Service worker fetch handler error:', error);
   }
 });

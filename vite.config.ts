@@ -8,8 +8,7 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-    // Enable HTTP2 for better performance
-    https: mode === 'development' ? false : true,
+    // HTTP/2 configuration will be handled by deployment platform
   },
   plugins: [
     react(),
@@ -26,8 +25,8 @@ export default defineConfig(({ mode }) => ({
     sourcemap: true,
     // Optimize CSS and reduce size
     cssCodeSplit: true,
-    // Enable CSS minimization
-    cssMinify: 'lightningcss',
+    // Use default CSS minimization
+    cssMinify: true,
     // Configure code splitting strategy
     rollupOptions: {
       output: {

@@ -1,139 +1,153 @@
 import React, { useRef } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
-import WebDesignCard from './WebDesignCard';
-import PhotoCard from './PhotoCard';
-import { useParallax } from '@/hooks/useParallax';
+import ExpertiseCard from './ExpertiseCard'; // Import the new card
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Camera, Code } from 'lucide-react';
+import { Camera, Code, PenTool, Palette, Video, TrendingUp, Smartphone } from 'lucide-react'; // Import icons
+
+// Define Expertise Items Data
+const expertiseData = [
+  {
+    id: 'web-dev',
+    icon: Code,
+    titleKey: 'services.webDev.title', // For i18n
+    descriptionKey: 'services.webDev.description', // For i18n
+    defaultTitle: 'Web Development',
+    defaultDescription: 'Crafting responsive, high-performance websites with modern technologies for a seamless user experience.',
+  },
+  {
+    id: 'ui-ux',
+    icon: PenTool,
+    titleKey: 'services.uiUx.title',
+    descriptionKey: 'services.uiUx.description',
+    defaultTitle: 'UI/UX Design',
+    defaultDescription: 'Designing intuitive and engaging user interfaces that enhance usability and drive conversion.',
+  },
+  {
+    id: 'photo',
+    icon: Camera,
+    titleKey: 'services.photography.title',
+    descriptionKey: 'services.photography.description',
+    defaultTitle: 'Product Photography',
+    defaultDescription: 'Capturing stunning, high-quality images that showcase your products and elevate your brand.',
+  },
+  {
+    id: 'branding',
+    icon: Palette,
+    titleKey: 'services.branding.title',
+    descriptionKey: 'services.branding.description',
+    defaultTitle: 'Branding & Identity',
+    defaultDescription: 'Developing unique brand identities that resonate with your target audience and build recognition.',
+  },
+  {
+    id: 'video',
+    icon: Video,
+    titleKey: 'services.video.title',
+    descriptionKey: 'services.video.description',
+    defaultTitle: 'Video Production',
+    defaultDescription: 'Creating compelling video content, from promotional shorts to product showcases, that tells your story.',
+  },
+  {
+    id: 'marketing',
+    icon: TrendingUp,
+    titleKey: 'services.marketing.title',
+    descriptionKey: 'services.marketing.description',
+    defaultTitle: 'Digital Marketing',
+    defaultDescription: 'Implementing data-driven marketing strategies to boost your online presence and achieve growth.',
+  },
+  // Example for a 7th item if a 3-2-2 layout is strictly needed later.
+  // {
+  //   id: 'mobile-app',
+  //   icon: Smartphone,
+  //   titleKey: 'services.mobileApp.title',
+  //   descriptionKey: 'services.mobileApp.description',
+  //   defaultTitle: 'Mobile App Development',
+  //   defaultDescription: 'Building custom mobile applications for iOS and Android to extend your reach and engagement.',
+  // },
+];
 
 const ServicesSection: React.FC = () => {
   const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
-  const { x, y } = useParallax({ intensity: 0.02 });
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
   });
   
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.8, 1], [0, 1, 1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.9, 1, 1, 0.95]);
+  // Parallax and animation for the section itself (can be kept or adjusted)
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '10%']); // Reduced parallax intensity
+  const sectionScale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.95, 1, 1, 0.95]); // Subtle scale for section
 
   return (
     <motion.section 
       id="services" 
-      className="relative py-24 md:py-36 px-4 md:px-8 overflow-hidden" 
+      className="relative py-20 md:py-28 px-4 overflow-hidden" // Adjusted padding
       ref={sectionRef}
-      style={{ scale }}
+      style={{ scale: sectionScale }}
     >
-      {/* Background elements */}
+      {/* Decorative Background Icons (can be kept or adjusted) */}
       <motion.div 
         className="absolute inset-0 pointer-events-none overflow-hidden"
         style={{ y: backgroundY }}
       >
-        {/* Decorative Web Design Icon (Top Right) - Services Context */}
         <motion.div
-          className="absolute top-0 right-0 w-48 h-48 text-neon-cyan/20 transform translate-x-1/3 -translate-y-1/3 rotate-12 opacity-50"
-          animate={{ 
-            rotate: [12, 20, 12],
-            scale: [1, 1.05, 1],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-0 right-0 w-40 h-40 md:w-48 md:h-48 text-neon-cyan/10 transform translate-x-1/4 -translate-y-1/4 rotate-12 opacity-70"
+          animate={{ rotate: [12, 25, 12], scale: [1, 1.1, 1]}}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         >
-          <Code size={192} />
+          <Code size="100%" />
         </motion.div>
-
-        {/* Decorative Product Photography Icon (Bottom Left) - Services Context */}
         <motion.div
-          className="absolute bottom-0 left-0 w-48 h-48 text-neon-purple/20 transform -translate-x-1/3 translate-y-1/3 -rotate-12 opacity-50"
-          animate={{ 
-            rotate: [-12, -20, -12],
-            scale: [1, 1.05, 1],
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-0 left-0 w-40 h-40 md:w-48 md:h-48 text-neon-purple/10 transform -translate-x-1/4 translate-y-1/4 -rotate-12 opacity-70"
+          animate={{ rotate: [-12, -25, -12], scale: [1, 1.1, 1]}}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         >
-          <Camera size={192} />
+          <Camera size="100%" />
         </motion.div>
       </motion.div>
 
-      {/* Animated grid lines */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 grid grid-cols-6 pointer-events-none">
-          {[...Array(7)].map((_, i) => (
-            <motion.div 
-              key={i} 
-              className="border-l border-white/10 h-full"
-              initial={{ height: "0%" }}
-              animate={{ height: "100%" }}
-              transition={{ duration: 1.5, delay: i * 0.1 }}
-            />
-          ))}
-        </div>
-        <div className="absolute inset-0 grid grid-rows-6 pointer-events-none">
-          {[...Array(7)].map((_, i) => (
-            <motion.div 
-              key={i} 
-              className="border-t border-white/10 w-full"
-              initial={{ width: "0%" }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1.5, delay: i * 0.1 }}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Optional: Animated grid lines (can be kept or adjusted) */}
+      {/* ... existing grid lines code ... */}
 
       <div className="container max-w-7xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16 md:mb-24"
+          className="text-center mb-12 md:mb-20" // Adjusted margin
         >
-          <h2 className="text-4xl md:text-6xl font-bold mb-6">
-            <span className="text-gradient">{t('services.title')}</span>
+          <h2 className="text-3xl md:text-5xl font-bold mb-5 text-gradient">
+            {t('expertise.title') /* Using existing key for "Our Expertise" */}
           </h2>
-          <motion.p 
-            className="text-lg text-foreground/70 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            We transform ideas into stunning digital experiences through cutting-edge web design
-            and captivating product photography.
-          </motion.p>
+          <p className="text-md md:text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed">
+            {/* For subtitle, provide a default if 'services.newSubtitle' is not in translations */}
+            {t('services.newSubtitle') === 'services.newSubtitle' 
+              ? 'We transform ideas into stunning digital experiences through cutting-edge web design, captivating product photography, and more.' 
+              : t('services.newSubtitle')}
+          </p>
         </motion.div>
         
-        {/* Add visual connector between cards */}
-        <div className="relative">
-          <motion.div
-            className="absolute inset-y-0 left-1/2 w-px bg-gradient-to-b from-transparent via-neon-purple to-transparent transform -translate-x-1/2 md:block hidden"
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-            viewport={{ once: true, margin: "0px 0px -100px 0px" }}
-          ></motion.div>
-          <div 
-            className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 relative z-10"
-            style={{
-              transform: `translate3d(${x}px, ${y}px, 0px)`
-            }}
-          >
-            <div className="h-full">
-              <WebDesignCard />
-            </div>
+        {/* New Expertise Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {expertiseData.map((item, index) => {
+            const translatedTitle = t(item.titleKey);
+            const title = translatedTitle === item.titleKey ? item.defaultTitle : translatedTitle;
             
-            <div className="h-full">
-              <PhotoCard />
-            </div>
-          </div>
+            const translatedDescription = t(item.descriptionKey);
+            const description = translatedDescription === item.descriptionKey ? item.defaultDescription : translatedDescription;
+
+            return (
+              <ExpertiseCard 
+                key={item.id}
+                icon={item.icon}
+                title={title}
+                description={description}
+                delay={index}
+              />
+            );
+          })}
         </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute -bottom-8 left-1/4 w-32 h-32 bg-gradient-to-r from-neon-cyan/10 to-neon-purple/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute -top-16 right-1/3 w-40 h-40 bg-gradient-to-r from-neon-purple/10 to-neon-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
       </div>
     </motion.section>
   );

@@ -35,8 +35,7 @@ const Navbar: React.FC = () => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-2 bg-background/70 backdrop-blur-lg border-b border-white/10' : 'py-4'}`}>
       <div className="container max-w-7xl mx-auto px-4 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <Logo className="h-9 w-9" />
-          <span className="text-xl font-bold text-gradient">Econic Media</span>
+          <Logo className="h-9 w-auto" /> {/* Adjusted for aspect ratio, text span removed */}
         </a>
         
         {/* Desktop Menu */}

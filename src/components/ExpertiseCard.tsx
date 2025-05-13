@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { LucideProps } from 'lucide-react';
+import IconWrapper from './ui/IconWrapper';
 
 interface ExpertiseCardProps {
   icon: React.ElementType<LucideProps>;
@@ -9,7 +10,7 @@ interface ExpertiseCardProps {
   delay?: number;
 }
 
-const ExpertiseCard: React.FC<ExpertiseCardProps> = ({ icon: Icon, title, description, delay = 0 }) => {
+const ExpertiseCard: React.FC<ExpertiseCardProps> = ({ icon, title, description, delay = 0 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -31,7 +32,12 @@ const ExpertiseCard: React.FC<ExpertiseCardProps> = ({ icon: Icon, title, descri
       <div className="relative z-10 flex flex-col h-full">
         <div className="mb-5 flex justify-center">
           <div className="p-3 bg-gradient-to-br from-neon-cyan/20 to-neon-purple/20 rounded-full shadow-inner-soft group-hover:shadow-neon-cyan/40 transition-shadow duration-300">
-            <Icon className="w-8 h-8 md:w-10 md:h-10 text-neon-cyan group-hover:text-white transition-colors duration-300" />
+            <IconWrapper 
+              icon={icon} 
+              size={40} 
+              position="card" 
+              className="group-hover:text-white transition-colors duration-300" 
+            />
           </div>
         </div>
         

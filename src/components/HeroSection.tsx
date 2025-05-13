@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Code, Camera } from 'lucide-react'; // Import contextual icons
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import { preloadCriticalImages } from '@/lib/image-optimization';
+import IconWrapper from './ui/IconWrapper';
 
 const HeroSection: React.FC = () => {
   const { t } = useLanguage();
@@ -22,24 +23,24 @@ const HeroSection: React.FC = () => {
       
       {/* Decorative Code Icon (Top Right) - Hero Context */}
       <motion.div
-        className="absolute top-0 right-0 w-48 h-48 text-neon-cyan/20 transform translate-x-1/3 -translate-y-1/3 rotate-12 opacity-50"
+        className="absolute top-0 right-0 w-48 h-48 transform translate-x-1/3 -translate-y-1/3 rotate-12"
         initial={{ opacity: 0, rotate: 0, scale: 0.8 }}
-        whileInView={{ opacity: 0.5, rotate: 12, scale: 1 }}
+        whileInView={{ opacity: 1, rotate: 12, scale: 1 }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         viewport={{ once: false, margin: "-100px" }}
       >
-        <Code size={192} />
+        <IconWrapper icon={Code} size={192} position="decoration" className="text-neon-cyan/40" />
       </motion.div>
       
       {/* Decorative Camera Icon (Bottom Left) - Hero Context */}
       <motion.div
-        className="absolute bottom-0 left-0 w-48 h-48 text-neon-purple/20 transform -translate-x-1/3 translate-y-1/3 -rotate-12 opacity-50"
+        className="absolute bottom-0 left-0 w-48 h-48 transform -translate-x-1/3 translate-y-1/3 -rotate-12"
         initial={{ opacity: 0, rotate: 0, scale: 0.8 }}
-        whileInView={{ opacity: 0.5, rotate: -12, scale: 1 }}
+        whileInView={{ opacity: 1, rotate: -12, scale: 1 }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         viewport={{ once: false, margin: "-100px" }}
       >
-        <Camera size={192} />
+        <IconWrapper icon={Camera} size={192} position="decoration" className="text-neon-purple/40" />
       </motion.div>
       
       {/* Gradient orb decorations */}
@@ -56,7 +57,8 @@ const HeroSection: React.FC = () => {
           </ScrollReveal>
           
           <ScrollReveal delay={500}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 flex items-center gap-3">
+              <IconWrapper icon={Code} size={32} position="section-header" className="text-neon-cyan" />
               <span className="text-gradient">{t('hero.title')}</span>
             </h1>
           </ScrollReveal>

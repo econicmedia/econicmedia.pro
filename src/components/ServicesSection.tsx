@@ -3,6 +3,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import ExpertiseCard from './ExpertiseCard'; // Import the new card
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Camera, Code, PenTool, Palette, Video, TrendingUp, Smartphone } from 'lucide-react'; // Import icons
+import IconWrapper from './ui/IconWrapper';
 
 // Define Expertise Items Data
 const expertiseData = [
@@ -85,29 +86,26 @@ const ServicesSection: React.FC = () => {
       ref={sectionRef}
       style={{ scale: sectionScale }}
     >
-      {/* Decorative Background Icons (can be kept or adjusted) */}
+      {/* Decorative Background Icons (updated with IconWrapper) */}
       <motion.div 
         className="absolute inset-0 pointer-events-none overflow-hidden"
         style={{ y: backgroundY }}
       >
         <motion.div
-          className="absolute top-0 right-0 w-40 h-40 md:w-48 md:h-48 text-neon-cyan/10 transform translate-x-1/4 -translate-y-1/4 rotate-12 opacity-70"
+          className="absolute top-0 right-0 w-40 h-40 md:w-48 md:h-48 transform translate-x-1/4 -translate-y-1/4 rotate-12"
           animate={{ rotate: [12, 25, 12], scale: [1, 1.1, 1]}}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         >
-          <Code size="100%" />
+          <IconWrapper icon={Code} size="100%" position="decoration" className="text-neon-cyan/30" />
         </motion.div>
         <motion.div
-          className="absolute bottom-0 left-0 w-40 h-40 md:w-48 md:h-48 text-neon-purple/10 transform -translate-x-1/4 translate-y-1/4 -rotate-12 opacity-70"
+          className="absolute bottom-0 left-0 w-40 h-40 md:w-48 md:h-48 transform -translate-x-1/4 translate-y-1/4 -rotate-12"
           animate={{ rotate: [-12, -25, -12], scale: [1, 1.1, 1]}}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         >
-          <Camera size="100%" />
+          <IconWrapper icon={Camera} size="100%" position="decoration" className="text-neon-purple/30" />
         </motion.div>
       </motion.div>
-
-      {/* Optional: Animated grid lines (can be kept or adjusted) */}
-      {/* ... existing grid lines code ... */}
 
       <div className="container max-w-7xl mx-auto relative z-10">
         <motion.div
@@ -117,7 +115,8 @@ const ServicesSection: React.FC = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="text-center mb-12 md:mb-20" // Adjusted margin
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-5 text-gradient">
+          <h2 className="text-3xl md:text-5xl font-bold mb-5 text-gradient flex items-center justify-center gap-3">
+            <IconWrapper icon={TrendingUp} size={32} position="section-header" className="text-neon-cyan" />
             {t('expertise.title') /* Using existing key for "Our Expertise" */}
           </h2>
           <p className="text-md md:text-lg text-foreground/70 max-w-2xl mx-auto leading-relaxed">

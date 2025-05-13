@@ -1,0 +1,13 @@
+.section-padding {
+  padding: 6rem 0;
+  /* Add subtle gradient top border for visual separation */
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(to right, rgba(0, 229, 229, 0.1), rgba(179, 102, 255, 0.1), rgba(0, 229, 229, 0.1));
+  border-image-slice: 1;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 9rem 0;
+  }
+} 

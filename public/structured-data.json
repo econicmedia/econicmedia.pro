@@ -1,0 +1,94 @@
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Econic Media",
+    "description": "Product photography without shipping and branding design agency specializing in e-commerce visuals.",
+    "url": "https://econicmedia.pro",
+    "telephone": "+491723773552",
+    "email": "wtf@econicmedia.pro",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Berlin",
+      "addressCountry": "Germany"
+    },
+    "priceRange": "$$",
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "image": "https://econicmedia.pro/lovable-uploads/f71aca91-6b27-4100-a40e-883ce27ec690.png",
+    "sameAs": [
+      "https://facebook.com/econicmedia",
+      "https://instagram.com/econicmedia"
+    ],
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": 52.5200,
+        "longitude": 13.4050
+      },
+      "geoRadius": "50000"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do I need to ship products for photography?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, there's no need to ship your products to us. Our innovative process allows you to simply send high-resolution photos of your products, and we'll transform them into professional studio-quality images with perfect lighting, shadows, and compositions. This saves you time, shipping costs, and potential product damage risks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What file formats do I get with my design package?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We provide all deliverables in multiple formats to ensure maximum versatility. For images, you'll receive high-resolution JPG/PNG files optimized for web and print, along with editable PSD/AI source files where applicable. For web design, you'll get complete website files, responsive layouts, and all graphical assets in appropriate formats. We can accommodate specific format requests to meet your particular needs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can you design for my social media brand?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! We specialize in creating cohesive social media visual branding across all platforms. Our social media design packages include custom graphics, post templates, story templates, profile elements, and ad creatives specifically optimized for each platform's requirements (Instagram, Facebook, TikTok, LinkedIn, etc.). We ensure your brand maintains consistent visual identity while maximizing engagement on each platform."
+        }
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Econic Media Product Photography Services",
+    "description": "Professional product photography without shipping your items. We transform your photos into studio-quality marketing visuals.",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Monthly Website Plan",
+        "price": "200",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "description": "Includes 20 product images and matching Facebook & Instagram marketing posters monthly."
+      },
+      {
+        "@type": "Offer",
+        "name": "Yearly Website Plan",
+        "price": "1499",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "description": "Best value: Includes 50 product images and Facebook & Instagram marketing posters every month."
+      },
+      {
+        "@type": "Offer",
+        "name": "One-Time Website Plan",
+        "price": "2500",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "description": "Custom-built site plus 50 product images and social media posters delivered monthly for 12 months."
+      }
+    ]
+  }
+] 

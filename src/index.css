@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 30% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 225 30% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 225 30% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 192 100% 50%;
+    --primary-foreground: 225 30% 5%;
+
+    --secondary: 270 75% 59%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 225 25% 15%;
+    --muted-foreground: 215 20% 75%;
+
+    --accent: 270 75% 59%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 225 30% 15%;
+    --input: 225 30% 15%;
+    --ring: 192 100% 50%;
+
+    --radius: 0.75rem;
+
+    --glow-primary: 192 100% 60%;
+    --glow-secondary: 270 75% 65%;
+
+    --sidebar-background: 225 30% 6%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 192 100% 50%;
+    --sidebar-primary-foreground: 225 30% 5%;
+    --sidebar-accent: 225 30% 10%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 225 30% 15%;
+    --sidebar-ring: 192 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border selection:bg-neon-purple/20 selection:text-white;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-outfit overflow-x-hidden;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-lg bg-white/5 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .glass-card:hover {
+    @apply border-primary/40 shadow-[0_8px_20px_-4px_rgba(var(--primary),0.3)];
+  }
+  
+  .neon-glow {
+    @apply relative;
+  }
+  
+  .neon-glow::after {
+    content: "";
+    @apply absolute inset-0 bg-gradient-neon opacity-30 blur-lg -z-10;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-neon bg-clip-text text-transparent;
+  }
+  
+  .section-padding {
+    @apply py-20 md:py-28 px-4 md:px-8;
+  }
+  
+  .reveal {
+    @apply opacity-0 transition-all duration-700 ease-out;
+  }
+  
+  .reveal.active {
+    @apply opacity-100 transform-none;
+  }
+  
+  /* Generic Button Hover Enhancements - applies to elements with role='button' or common button classes */
+  .btn, button, [role='button'], input[type='submit'], input[type='button'] {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  .btn:hover, button:hover, [role='button']:hover, input[type='submit']:hover, input[type='button']:hover {
+    @apply scale-[1.03] brightness-110;
+  }
+
+  /* Icon Hover Enhancements - targets SVGs directly, can be more specific if needed */
+  svg {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  svg:hover {
+    @apply scale-110 opacity-85;
+  }
+
+  /* Hero image specific styles */
+  .hero-image-container {
+    @apply w-full h-full flex items-center justify-center overflow-visible;
+  }
+  
+  .hero-image {
+    @apply transition-all duration-500 ease-out;
+    animation: image-fade-in 1.2s ease-out forwards;
+  }
+  
+  .hero-spotlight {
+    @apply rounded-full bg-gradient-to-br from-neon-cyan/30 to-neon-purple/30;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    animation: spotlight-float 8s ease-in-out infinite alternate;
+  }
+  
+  /* Services section specific animations */
+  .card-glow {
+    @apply absolute opacity-0 transition-opacity inset-0;
+    background: radial-gradient(ellipse at center, rgba(0, 255, 255, 0.15) 0%, rgba(157, 78, 221, 0.15) 50%, transparent 70%);
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+  
+  .services-grid {
+    @apply grid gap-8 relative;
+    perspective: 1000px;
+  }
+  
+  .services-card {
+    @apply relative rounded-2xl overflow-hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
+  }
+  
+  .services-card:hover {
+    transform: translateZ(20px);
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(0.95);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes image-fade-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes spotlight-float {
+    0% {
+      transform: translateX(-5%) translateY(-5%) rotate(0deg);
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateX(5%) translateY(5%) rotate(5deg);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4);
+    }
+    50% {
+      transform: scale(1.03);
+      box-shadow: 0 0 10px 5px rgba(0, 255, 255, 0.1), 0 0 15px 10px rgba(0, 255, 255, 0.05);
+    }
+  }
+
+  .cta-pulse-hover:hover {
+    animation: pulse 1.5s infinite;
+  }
+}

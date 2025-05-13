@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+            http://www.google.com/schemas/sitemap-image/1.1
+            http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://econicmedia.pro/</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://econicmedia.pro/lovable-uploads/f71aca91-6b27-4100-a40e-883ce27ec690.png</image:loc>
+      <image:title>Econic Media - Product Photography and Branding Design</image:title>
+    </image:image>
+  </url>
+
+  <!-- Main sections as anchors on homepage -->
+  <url>
+    <loc>https://econicmedia.pro/#expertise</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://econicmedia.pro/#gallery</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://econicmedia.pro/Product Pictures/1 (1).png</image:loc>
+      <image:title>Coffee packaging mockup by Econic Media – dramatic side lighting with shadow details</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://econicmedia.pro/#websites</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://econicmedia.pro/Websites/aurora-dental-clinic.png</image:loc>
+      <image:title>Aurora Dental Clinic - Professional Healthcare Website design by Econic Media</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://econicmedia.pro/#pricing</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://econicmedia.pro/#testimonials</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://econicmedia.pro/#contact</loc>
+    <lastmod>2023-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset> 

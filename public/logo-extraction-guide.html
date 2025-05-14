@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Extraction Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .instructions {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .step {
+            margin-bottom: 15px;
+        }
+        code {
+            background-color: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Logo Extraction Guide</h1>
+    <div class="instructions">
+        <p>Based on the new logo image you provided, we need to extract and save two separate image files:</p>
+        
+        <div class="step">
+            <h2>Step 1: Extract the E Icon</h2>
+            <p>Extract the gradient blue-purple square with the "E" icon and save it as:</p>
+            <code>/public/e-icon.png</code>
+            <p>This should be just the square icon portion without the text.</p>
+        </div>
+        
+        <div class="step">
+            <h2>Step 2: Extract the Text Logo</h2>
+            <p>Extract the "Econic Media" text portion with the outline style and save it as:</p>
+            <code>/public/econic-text.png</code>
+            <p>This should be just the text portion without the icon.</p>
+        </div>
+        
+        <div class="step">
+            <h2>Step 3: Save Full Logo (Optional)</h2>
+            <p>You can also save the full combined logo (icon + text) as:</p>
+            <code>/public/logo.png</code>
+            <p>This will replace the existing logo file.</p>
+        </div>
+    </div>
+    
+    <h2>Technical Notes:</h2>
+    <ul>
+        <li>Make sure all images have transparent backgrounds</li>
+        <li>Maintain the proper aspect ratio for each component</li>
+        <li>Save in PNG format to preserve transparency</li>
+        <li>After saving the files, the updated Logo component will automatically use them</li>
+    </ul>
+</body>
+</html> 

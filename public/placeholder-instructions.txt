@@ -1,0 +1,18 @@
+LOGO UPDATE INSTRUCTIONS
+
+1. Save the E icon portion (blue/purple gradient square with "E") as:
+   /public/e-icon.png
+
+2. Save the "Econic Media" text portion (outline text) as:
+   /public/econic-text.png
+
+3. Optionally, save the complete logo (icon + text) as:
+   /public/logo.png
+
+For immediate testing, you can:
+1. Make a copy of the existing logo.png file and rename it to e-icon.png
+2. Create a simple transparent PNG with just text for econic-text.png
+
+Remember to replace these with the actual extracted logo elements when available.
+
+The website has been configured to use these separate logo elements, so once they're saved in the proper locations, the changes will be visible throughout the site. 

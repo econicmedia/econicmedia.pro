@@ -3,7 +3,6 @@ import { useLanguage } from '@/context/LanguageContext';
 import ScrollReveal from './ScrollReveal';
 import { Mail, Send, MessageSquare, Plus, Minus } from 'lucide-react';
 import { motion } from 'framer-motion';
-import IconWrapper from './ui/IconWrapper';
 
 // FAQ Component
 const FAQ = () => {
@@ -27,8 +26,7 @@ const FAQ = () => {
   return (
     <div className="max-w-3xl mx-auto mt-20">
       <ScrollReveal>
-        <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 flex items-center justify-center gap-3">
-          <IconWrapper icon={MessageSquare} size={24} position="section-header" className="text-neon-cyan" />
+        <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">
           <span className="text-gradient">Frequently Asked Questions</span>
         </h3>
       </ScrollReveal>
@@ -45,8 +43,8 @@ const FAQ = () => {
               >
                 <span>{item.question}</span>
                 {openIndex === index ? 
-                  <IconWrapper icon={Minus} size={20} className="text-neon-cyan" /> : 
-                  <IconWrapper icon={Plus} size={20} className="text-neon-cyan" />
+                  <Minus className="h-5 w-5 text-neon-cyan" /> : 
+                  <Plus className="h-5 w-5 text-neon-cyan" />
                 }
               </button>
               <div 
@@ -73,32 +71,31 @@ const ContactSection: React.FC = () => {
     <section id="contact" className="section-padding relative overflow-hidden">
       {/* Decorative Mail Icon (Top Right) - Contact Context */}
       <motion.div
-        className="absolute top-0 right-0 w-40 h-40 transform translate-x-1/3 -translate-y-1/3 rotate-12"
+        className="absolute top-0 right-0 w-40 h-40 text-neon-cyan/20 transform translate-x-1/3 -translate-y-1/3 rotate-12 opacity-50"
         initial={{ opacity: 0, scale: 0.8, rotate: 12 }}
-        whileInView={{ opacity: 1, scale: 1, rotate: 15 }}
+        whileInView={{ opacity: 0.5, scale: 1, rotate: 15 }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         viewport={{ once: false, margin: "-100px" }}
       >
-        <IconWrapper icon={Mail} size={160} position="decoration" className="text-neon-cyan/40" />
+        <Mail size={160} />
       </motion.div>
 
       {/* Decorative Send Icon (Bottom Left) - Contact Context */}
       <motion.div
-        className="absolute bottom-0 left-0 w-40 h-40 transform -translate-x-1/3 translate-y-1/3 -rotate-12"
+        className="absolute bottom-0 left-0 w-40 h-40 text-neon-purple/20 transform -translate-x-1/3 translate-y-1/3 -rotate-12 opacity-50"
         initial={{ opacity: 0, scale: 0.8, rotate: -12 }}
-        whileInView={{ opacity: 1, scale: 1, rotate: -15 }}
+        whileInView={{ opacity: 0.5, scale: 1, rotate: -15 }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         viewport={{ once: false, margin: "-100px" }}
       >
-        <IconWrapper icon={Send} size={160} position="decoration" className="text-neon-purple/40" />
+        <Send size={160} />
       </motion.div>
 
       <div className="absolute inset-0 bg-gradient-radial from-neon-cyan/5 to-transparent"></div>
       
       <div className="container max-w-7xl mx-auto relative z-10">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 flex items-center justify-center gap-3">
-            <IconWrapper icon={Mail} size={32} position="section-header" className="text-neon-cyan" />
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             <span className="text-gradient">{t('contact.title')}</span>
           </h2>
         </ScrollReveal>
@@ -117,7 +114,7 @@ const ContactSection: React.FC = () => {
                 href="mailto:wtf@econicmedia.pro" 
                 className="flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-purple-600 to-neon-cyan rounded-xl text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-neon-cyan/20 hover:scale-105 text-center"
               >
-                <IconWrapper icon={Mail} size={24} className="text-white" />
+                <Mail className="h-6 w-6" />
                 <span className="text-lg">Drop us an email</span>
               </a>
 
@@ -128,7 +125,7 @@ const ContactSection: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-green-500 to-green-600 rounded-xl text-white font-medium transition-all duration-300 hover:shadow-lg hover:shadow-green-500/20 hover:scale-105 text-center"
               >
-                <IconWrapper icon={MessageSquare} size={24} className="text-white" />
+                <MessageSquare className="h-6 w-6" />
                 <span className="text-lg">Talk to us on WhatsApp</span>
               </a>
             </div>

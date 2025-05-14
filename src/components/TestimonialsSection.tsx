@@ -3,7 +3,6 @@ import { useLanguage } from '@/context/LanguageContext';
 import ScrollReveal from './ScrollReveal';
 import { Star, Quote, MessageSquareQuote } from 'lucide-react';
 import { motion } from 'framer-motion';
-import IconWrapper from './ui/IconWrapper';
 
 const TestimonialsSection: React.FC = () => {
   const { t } = useLanguage();
@@ -36,30 +35,29 @@ const TestimonialsSection: React.FC = () => {
     <section id="testimonials" className="section-padding relative overflow-hidden">
       {/* Decorative Quote Icon (Top Right) - Testimonials Context */}
       <motion.div
-        className="absolute top-0 right-0 w-40 h-40 transform translate-x-1/3 -translate-y-1/3 rotate-12"
+        className="absolute top-0 right-0 w-40 h-40 text-neon-cyan/20 transform translate-x-1/3 -translate-y-1/3 rotate-12 opacity-50"
         initial={{ opacity: 0, scale: 0.8, rotate: 12 }}
-        whileInView={{ opacity: 1, scale: 1, rotate: 15 }}
+        whileInView={{ opacity: 0.5, scale: 1, rotate: 15 }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         viewport={{ once: false, margin: "-100px" }}
       >
-        <IconWrapper icon={Quote} size={160} position="decoration" className="text-neon-cyan/40" />
+        <Quote size={160} />
       </motion.div>
 
       {/* Decorative MessageSquare Icon (Bottom Left) - Testimonials Context */}
       <motion.div
-        className="absolute bottom-0 left-0 w-40 h-40 transform -translate-x-1/3 translate-y-1/3 -rotate-12"
+        className="absolute bottom-0 left-0 w-40 h-40 text-neon-purple/20 transform -translate-x-1/3 translate-y-1/3 -rotate-12 opacity-50"
         initial={{ opacity: 0, scale: 0.8, rotate: -12 }}
-        whileInView={{ opacity: 1, scale: 1, rotate: -15 }}
+        whileInView={{ opacity: 0.5, scale: 1, rotate: -15 }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         viewport={{ once: false, margin: "-100px" }}
       >
-        <IconWrapper icon={MessageSquareQuote} size={160} position="decoration" className="text-neon-purple/40" />
+        <MessageSquareQuote size={160} />
       </motion.div>
 
       <div className="container max-w-7xl mx-auto relative z-10">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 flex items-center justify-center gap-3">
-            <IconWrapper icon={MessageSquareQuote} size={32} position="section-header" className="text-neon-cyan" />
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
             <span className="text-gradient">Client Success Stories</span>
           </h2>
         </ScrollReveal>
@@ -68,13 +66,11 @@ const TestimonialsSection: React.FC = () => {
           {testimonials.map((testimonial, index) => (
             <ScrollReveal key={index} delay={index * 200}>
               <div className="glass-card rounded-xl p-8 border border-white/10 hover:border-white/20 transition-all relative h-full hover:translate-y-[-4px] hover:border-neon-cyan hover:shadow-lg">
-                <div className="absolute top-6 left-6">
-                  <IconWrapper icon={MessageSquareQuote} size={32} position="decoration" className="text-neon-purple/40" />
-                </div>
+                <MessageSquareQuote className="absolute top-6 left-6 h-8 w-8 text-neon-purple/20" />
 
                 <div className="flex mb-4 relative z-10">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <IconWrapper key={i} icon={Star} size={20} className="text-neon-cyan fill-neon-cyan" />
+                    <Star key={i} className="h-5 w-5 text-neon-cyan" fill="#00FFFF" />
                   ))}
                 </div>
 

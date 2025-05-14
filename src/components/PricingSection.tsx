@@ -7,12 +7,16 @@ import { Switch } from '@/components/ui/switch';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import { BarChart2, TrendingUp } from 'lucide-react';
-import IconWrapper from './ui/IconWrapper';
 
 // Add CSS for fade transition effect
-const fadeAnimation = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+const fadeTransition = {
+  opacity: 0,
+  transition: 'opacity 0.3s ease-in-out',
+  animationFillMode: 'forwards',
+};
+
+const fadeIn = {
+  opacity: 1,
 };
 
 // Define different gradients for each card
@@ -155,32 +159,31 @@ const PricingSection: React.FC = () => {
     <section id="pricing" className="section-padding relative overflow-hidden">
       {/* Decorative Bar Chart Icon (Top Right) - Pricing Context */}
       <motion.div
-        className="absolute top-0 right-0 w-40 h-40 transform translate-x-1/3 -translate-y-1/3 rotate-12"
+        className="absolute top-0 right-0 w-40 h-40 text-neon-purple/20 transform translate-x-1/3 -translate-y-1/3 rotate-12 opacity-50"
         initial={{ opacity: 0, scale: 0.8, rotate: 12 }}
-        whileInView={{ opacity: 1, scale: 1, rotate: 15 }}
+        whileInView={{ opacity: 0.5, scale: 1, rotate: 15 }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         viewport={{ once: false, margin: "-100px" }}
       >
-        <IconWrapper icon={BarChart2} size={160} position="decoration" className="text-neon-purple/40" />
+        <BarChart2 size={160} />
       </motion.div>
 
       {/* Decorative Trending Up Icon (Bottom Left) - Pricing Context */}
       <motion.div
-        className="absolute bottom-0 left-0 w-40 h-40 transform -translate-x-1/3 translate-y-1/3 -rotate-12"
+        className="absolute bottom-0 left-0 w-40 h-40 text-neon-cyan/20 transform -translate-x-1/3 translate-y-1/3 -rotate-12 opacity-50"
         initial={{ opacity: 0, scale: 0.8, rotate: -12 }}
-        whileInView={{ opacity: 1, scale: 1, rotate: -15 }}
+        whileInView={{ opacity: 0.5, scale: 1, rotate: -15 }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }}
         viewport={{ once: false, margin: "-100px" }}
       >
-        <IconWrapper icon={TrendingUp} size={160} position="decoration" className="text-neon-cyan/40" />
+        <TrendingUp size={160} />
       </motion.div>
 
       <div className="absolute inset-0 bg-gradient-radial from-neon-purple/5 to-transparent"></div>
       
       <div className="container max-w-7xl mx-auto relative z-10">
         <ScrollReveal>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 flex items-center justify-center gap-3">
-            <IconWrapper icon={BarChart2} size={32} position="section-header" className="text-neon-cyan" />
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
             <span className="text-gradient">{t('pricing.title')}</span>
           </h2>
         </ScrollReveal>
@@ -195,96 +198,96 @@ const PricingSection: React.FC = () => {
           <div className={switchContainerClass + " mx-auto max-w-xs mb-12"}>
             <span 
               className={cn(
-                "text-sm font-medium mr-2", 
-                !isDesignOnly ? "text-white" : "text-foreground/70"
+                "text-sm px-4 py-2 transition-all duration-300", 
+                !isDesignOnly ? "text-foreground font-medium" : "text-foreground/60"
               )}
             >
-              {t('pricing.websites')}
+              Websites
             </span>
-            <Switch 
+            <Switch
               checked={isDesignOnly}
               onCheckedChange={handleToggleChange}
-              className="data-[state=checked]:bg-neon-cyan data-[state=unchecked]:bg-gray-700"
+              className={cn(
+                "data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-gray-600/30",
+                "transition-all duration-300"
+              )}
             />
             <span 
               className={cn(
-                "text-sm font-medium ml-2", 
-                isDesignOnly ? "text-white" : "text-foreground/70"
+                "text-sm px-4 py-2 transition-all duration-300", 
+                isDesignOnly ? "text-foreground font-medium" : "text-foreground/60"
               )}
             >
-              {t('pricing.designOnly')}
+              Design Only
             </span>
           </div>
-
-          {/* Plans Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {plansToDisplay.map((plan, index) => (
-              <motion.div
-                key={plan.name}
-                initial="hidden"
-                animate="visible"
-                variants={fadeAnimation}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className={cn(
-                  "group flex flex-col p-6 rounded-2xl bg-black/30 backdrop-blur-md border border-white/10",
-                  "transition-all duration-300 hover:shadow-lg relative",
-                  plan.popular ? "md:scale-105" : "",
-                  plan.bestDeal ? "md:scale-[1.08]" : "",
-                  cardGradients[index].borderHover
-                )}
-                style={{ 
-                  background: cardGradients[index].background,
-                  boxShadow: plan.popular || plan.bestDeal ? cardGradients[index].glow : "none"
-                }}
-              >
-                {/* Special tags for Popular and Best Deal */}
-                {(plan.popular || plan.bestDeal) && (
-                  <div
-                    className={cn(
-                      "absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/2",
-                      "px-3 py-1 rounded-full text-xs font-bold text-white",
-                      cardGradients[index].tagGradient
-                    )}
-                  >
-                    {plan.popular ? "Popular" : "Best Deal"}
-                  </div>
-                )}
-
-                <h3 className="text-2xl font-bold mb-2 text-white">{plan.name}</h3>
-                
-                {plan.tag && plan.tag !== "Popular" && plan.tag !== "Best Deal" && (
-                  <div className="mb-3 text-sm font-medium inline-flex px-2 py-1 bg-white/10 rounded-md text-neon-cyan">
-                    {plan.tag}
-                  </div>
-                )}
-                
-                <p className="text-foreground/70 mt-2 mb-4">{plan.description}</p>
-                
-                <div className="text-3xl font-bold mb-6 mt-auto text-white">{plan.price}</div>
-                
-                <ul className="space-y-3 mb-6">
-                  {plan.features.map((feature, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className={cn("mr-2 mt-1", cardGradients[index].checkColor)}>
-                        <IconWrapper icon={Check} size={16} className={cardGradients[index].checkColor} />
-                      </span>
-                      <span className="text-foreground/80">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <Button
-                  className={cn(
-                    "mt-auto w-full font-medium text-white",
-                    cardGradients[index].buttonGradient
-                  )}
-                >
-                  {plan.cta}
-                </Button>
-              </motion.div>
-            ))}
-          </div>
         </ScrollReveal>
+        
+        {/* Add key prop to force re-render and style for fade transition */}
+        <div 
+          key={isDesignOnly ? 'design' : 'websites'} 
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          style={{
+            ...fadeTransition,
+            ...fadeIn,
+          }}
+        >
+          {plansToDisplay.map((plan, index) => {
+            // Get gradient for this card based on index
+            const gradient = cardGradients[index];
+            
+            return (
+              <ScrollReveal key={index} delay={index * 200}>
+                <div 
+                  className={`glass-card border rounded-2xl p-8 relative 
+                    ${plan.popular || plan.bestDeal ? 'border-white/30 scale-[1.02] hover:scale-[1.05]' : 'border-white/10 hover:scale-[1.01]'}
+                    ${gradient.borderHover} transition-all duration-300 h-full flex flex-col`}
+                  style={{
+                    background: gradient.background,
+                    boxShadow: plan.popular || plan.bestDeal ? gradient.glow : "none"
+                  }}
+                >
+                  {(plan.popular || plan.bestDeal) && (
+                    <div className={`absolute -top-3 left-1/2 transform -translate-x-1/2 ${gradient.tagGradient} text-background text-xs font-medium px-3 py-1 rounded-full`}>
+                      {plan.tag}
+                    </div>
+                  )}
+                  
+                  <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                  <p className="text-sm text-foreground/70 mb-6">{plan.description}</p>
+                  
+                  <div className="mb-6">
+                    <div className="text-3xl font-bold">
+                      {plan.price}
+                    </div>
+                    <div className="text-sm text-foreground/70">
+                    </div>
+                  </div>
+                  
+                  <ul className="space-y-4 mb-8 flex-grow">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <Check className={`h-5 w-5 ${gradient.checkColor} flex-shrink-0 mt-0.5`} />
+                        <span className="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button 
+                    className={`w-full ${
+                      plan.popular || plan.bestDeal
+                        ? `${gradient.buttonGradient} hover:opacity-90 text-background` 
+                        : 'border-white/10 glass-card ' + gradient.borderHover
+                    } animated-button transition-all duration-300 hover:scale-[1.02]`}
+                    variant={plan.popular || plan.bestDeal ? 'default' : 'outline'}
+                  >
+                    {plan.cta}
+                  </Button>
+                </div>
+              </ScrollReveal>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

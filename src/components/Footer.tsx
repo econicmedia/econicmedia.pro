@@ -11,8 +11,8 @@ const Footer: React.FC = () => {
       <div className="container max-w-7xl mx-auto py-12 px-4">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <Logo className="h-8 w-auto" /> {/* Adjusted for aspect ratio, text span removed */}
+            <div className="mb-4">
+              <Logo />
             </div>
             <p className="text-sm text-foreground/70 max-w-md mb-4">
               A modern digital studio specializing in web design and product photography for ambitious brands looking to elevate their digital presence.
